@@ -1,0 +1,19 @@
+server:
+  port: 8080
+  context-path: /
+spring:
+  datasource:
+#    url: jdbc:h2:mem:AZ;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+#    driverClassName: org.h2.Driver
+    url: jdbc:mysql://localhost/powertrader
+    driverClassName: com.mysql.jdbc.Driver
+    username: root
+    password:
+#  redis:
+#    host: localhost
+#    password: secret
+#    port: 6379
+  jpa:
+    hibernate.ddl-auto: update
+security:
+  sessions: NEVER

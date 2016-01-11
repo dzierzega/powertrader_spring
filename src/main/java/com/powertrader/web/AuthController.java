@@ -1,8 +1,11 @@
 package com.powertrader.web;
 
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.security.Principal;
@@ -24,4 +27,13 @@ public class AuthController {
     public Map<String,String> token(HttpSession session) {
         return Collections.singletonMap("token", session.getId());
     }
+
+//    @RequestMapping(value = "/logout" , method = RequestMethod.GET)
+//    public String logout() {
+//        SecurityContextHolder.getContext().getAuthentication().setAuthenticated(false);
+//
+//        ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
+//        return "logged out";
+//    }
+
 }

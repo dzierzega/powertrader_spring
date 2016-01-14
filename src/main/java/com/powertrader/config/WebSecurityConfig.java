@@ -25,6 +25,8 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Order(SecurityProperties.ACCESS_OVERRIDE_ORDER)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
+    @Autowired
+    private CustomLogoutSuccessHandler customLogoutSuccesHandler;
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -36,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .addFilterAfter(new CsrfHeaderFilter(), CsrfFilter.class).csrf().csrfTokenRepository(csrfTokenRepository())
                 .and()
-                .logout()
+                .logout().logoutSuccessHandler(customLogoutSuccesHandler)
                 .permitAll();
                 //.and()
                // .logout().permitAll().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");
